@@ -1,0 +1,24 @@
+type User {
+  id: ID! @id 
+  slackId: String!
+  email: String! @unique
+  name: String @unique
+  role: String!
+  password: String
+  writtenKudoses: [Kudos] @relation(name: "WrittenKudoses")
+  ownKudoses: [Kudos] @relation(name: "OwnKudoses")
+}
+
+type Kudos {
+  id: ID! @id
+  text: String!
+  author: User @relation(name: "WrittenKudoses")
+  recipient: User @relation(name: "OwnKudoses")
+  category: String
+}
+
+type LoginResponse {
+  id: ID! @id
+  token: String
+  user: User
+}
