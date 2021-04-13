@@ -77,7 +77,7 @@ const interactionRequest = async (req, res) => {
     axios.post(webhookUrl, {
       text: `${addedKudos.text} is sent to ${
         recipient.name
-      }. To view kudoses login on http://localhost:3000/login`,
+      }. To view kudoses login to https://telesoftas-kudos-frontend.herokuapp.com/`,
     });
   } else {
     res.sendStatus(500);
