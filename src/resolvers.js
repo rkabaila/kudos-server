@@ -12,6 +12,9 @@ const resolvers = {
       if (!context.authenticatedUser) {
         throw new Error("Not Authenticated");
       }
+      if (context.authenticatedUser.role !== "admin") {
+        throw new Error("Role admin required");
+      }
       return context.prisma.kudoses();
     },
     userOwnKudoses(root, args, context) {
@@ -40,6 +43,9 @@ const resolvers = {
     users(root, args, context) {
       if (!context.authenticatedUser) {
         throw new Error("Not Authenticated");
+      }
+      if (context.authenticatedUser.role !== "admin") {
+        throw new Error("Role admin required");
       }
       return context.prisma.users();
     },
